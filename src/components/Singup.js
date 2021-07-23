@@ -16,7 +16,7 @@ console.log(emailRef)
         passwordRef.current.value
       )
       .then((user) => {
-      history.push("/Home")
+      history.push("/")
         console.log(user);
       })
       .catch((err) => {
