@@ -4,24 +4,27 @@ import Home from "./components/Home";
 import Singin from "./components/Singin";
 import Singup from "./components/Singup";
 import { useEffect, useState } from "react";
+import { UserContext } from "./UserContext";
 import { auth } from "./firebase";
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
       const user = {
-        uuid: userAuth?.uid,
-        email: userAuth?.email,
-      };
-      if (userAuth) {
-        setUser(user);
-      } else {
-        setUser(null);
+        uid: userAuth?.uid,
+        email: userAuth?.email
       }
-    });
-    return unsubscribe;
-  }, []);
+      if (userAuth) {
+        console.log(userAuth)
+        setUser(user)
+      } else {
+        setUser(null)
+      }
+    })
+    return unsubscribe
+  }, [])
   return (
+    <UserContext.Provider value={{user}}>
     <div className="App">
       <Router>
         <Switch>
@@ -35,6 +38,7 @@ function App() {
         </Switch>
       </Router>
     </div>
+    </UserContext.Provider>
   );
 }
 

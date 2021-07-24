@@ -1,0 +1,11 @@
+.headers {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plan-card {
+  max-width: 500px;
+  max-height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
